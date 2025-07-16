@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Welcome</title>
+
+  <!-- 🔐 Protect this page with login check -->
+  <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "index.html";
+    }
+  </script>
+
   <style>
     body {
       margin: 0;
@@ -31,7 +39,7 @@
       margin-bottom: 30px;
     }
 
-    button {
+    a button {
       background-color: red;
       color: white;
       font-weight: bold;
@@ -43,11 +51,10 @@
       transition: background-color 0.3s ease;
     }
 
-    button:hover {
+    a button:hover {
       background-color: darkred;
     }
 
-    /* Make button larger and text clearer on small phones */
     @media (max-width: 480px) {
       h1 {
         font-size: 7vw;
@@ -57,26 +64,22 @@
         font-size: 5vw;
       }
 
-      button {
+      a button {
         font-size: 5vw;
         padding: 14px 28px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <h1>WELCOME TO THE FIRST LEVEL MOOKIE</h1>
   <p>Press the start button</p>
-  <button onclick="startGame()">Start</button>
 
-  <script>
-    function startGame() {
-      alert("Level starting... 🔥");
-      // You can redirect or trigger animation here
-    }
-  </script>
+  <a href="level.html">
+    <button>Start Level</button>
+  </a>
 
 </body>
 </html>
-    
