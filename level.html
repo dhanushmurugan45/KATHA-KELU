@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Level 1 Quiz</title>
+  <title>Level 2 Quiz</title>
 
-  <!-- 🔐 Login protection -->
+  <!-- 🔐 Protect if not logged in -->
   <script>
     if (localStorage.getItem("loggedIn") !== "true") {
       window.location.href = "index.html";
@@ -22,25 +22,28 @@
       color: white;
       font-family: Arial, sans-serif;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: background-color 0.5s ease;
     }
 
     .quiz-container {
       background-color: white;
       color: black;
-      padding: 25px;
-      border-radius: 10px;
+      padding: 30px;
+      border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.4);
       max-width: 90%;
       width: 400px;
       text-align: center;
     }
 
-    .quiz-container h2 {
-      font-size: 20px;
+    h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
       margin-bottom: 20px;
     }
 
@@ -61,7 +64,6 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
     button:hover {
@@ -69,9 +71,10 @@
     }
 
     @media (max-width: 480px) {
-      .quiz-container h2 {
-        font-size: 16px;
+      h2 {
+        font-size: 18px;
       }
+
       input[type="text"], button {
         font-size: 14px;
         padding: 8px 16px;
@@ -83,32 +86,30 @@
 <body>
 
   <div class="quiz-container">
-    <h2>
-      ithu varaikkum evalo katha sollirkan athula irunthu onnu<br>
-      nan bang pona apo rendu drink saptan name enna
-    </h2>
+    <h2>EN GPAY PIN ENNA?</h2>
+    <p>CLUE: EN UYIR THOZHI</p>
     <input type="text" id="answer" placeholder="Your answer here..." />
     <br>
     <button onclick="checkAnswer()">Submit</button>
   </div>
 
-  <!-- Sounds -->
+  <!-- Audio Feedback -->
   <audio id="correct-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_ccee8c1a59.mp3"></audio>
   <audio id="wrong-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_56b158b98f.mp3"></audio>
 
   <script>
     function normalize(text) {
-      return text.toLowerCase().replace(/[^a-z ]/g, " ").trim();
+      return text.trim().toLowerCase();
     }
 
     function checkAnswer() {
-      const userAnswer = normalize(document.getElementById("answer").value);
-      const correctAnswers = ["whiskey beer", "beer whiskey"];
+      const answer = normalize(document.getElementById("answer").value);
+      const correctAnswer = "132023";
 
       const correctSound = document.getElementById("correct-sound");
       const wrongSound = document.getElementById("wrong-sound");
 
-      if (correctAnswers.includes(userAnswer)) {
+      if (answer === correctAnswer) {
         correctSound.play();
         document.body.style.backgroundColor = "green";
         setTimeout(() => {
@@ -118,8 +119,8 @@
         wrongSound.play();
         document.body.style.backgroundColor = "red";
         setTimeout(() => {
-          document.body.style.backgroundColor = "";
-        }, 2000);
+          document.body.style.backgroundColor = "black";
+        }, 1500);
       }
     }
   </script>
